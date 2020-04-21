@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arknight_Roll_Count_Code", "Arknight_Roll_Count_Code\Arknight_Roll_Count_Code.csproj", "{DFAAAAE0-A229-42CE-9FF0-CDB2BEDE9307}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFAAAAE0-A229-42CE-9FF0-CDB2BEDE9307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFAAAAE0-A229-42CE-9FF0-CDB2BEDE9307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFAAAAE0-A229-42CE-9FF0-CDB2BEDE9307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFAAAAE0-A229-42CE-9FF0-CDB2BEDE9307}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78A6B929-E36D-453F-95D2-53754E12EBC8}
+	EndGlobalSection
+EndGlobal
