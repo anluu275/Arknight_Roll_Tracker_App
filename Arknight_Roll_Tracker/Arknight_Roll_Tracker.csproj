@@ -6,4 +6,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="resources\arknightbag.png" />
+    <None Remove="resources\HDArknightBag.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="resources\arknightbag.png" />
+    <Resource Include="resources\HDArknightBag.png" />
+  </ItemGroup>
+
 </Project>

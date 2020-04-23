@@ -20,9 +20,16 @@ namespace Arknight_Roll_Tracker
     /// </summary>
     public partial class MainWindow : Window
     {
+        //CurrentRoll Rollstreak = new CurrentRoll();
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new CurrentRoll();
         }
+
+        private void Run_Pity_Calculator_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
     }
 }
