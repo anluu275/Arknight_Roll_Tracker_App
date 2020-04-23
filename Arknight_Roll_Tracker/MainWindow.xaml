@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Arknight_Roll_Tracker"
-        mc:Ignorable="d" FontSize="15"
+        mc:Ignorable="d" FontSize="18"
         Title="Arknight's Roll Tracker" Height="450" Width="800">
     <Grid>
         <Grid.Background>
@@ -47,6 +47,6 @@
         <TextBlock x:Name="percent5stars" Grid.Column="3" Grid.Row="3" Text="{Binding Percent5star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
         <TextBlock x:Name="percent4stars" Grid.Column="3" Grid.Row="4" Text="{Binding Percent4star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
         <TextBlock x:Name="percent3stars" Grid.Column="3" Grid.Row="5" Text="{Binding Percent3star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
-        <Button x:Name="Run_Pity_Calculator" Grid.Column="1" Grid.Row="7" Content=" Calculate Percent " Margin ="0,0,5,10" Click="Run_Pity_Calculator_Click" />
+        <Button x:Name="SaveButton" Grid.Column="1" Grid.Row="7" Content=" Save " Margin ="0,0,5,10" Command="{Binding SaveCommand}" />
     </Grid>
 </Window>

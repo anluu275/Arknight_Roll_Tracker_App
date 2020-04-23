@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 
 namespace Arknight_Roll_Tracker
 {
-    public class CurrentRoll : BaseViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
         /* amt of each */
         private float _curTotalRolls;
@@ -16,6 +17,10 @@ namespace Arknight_Roll_Tracker
         private float _percent5star;
         private float _percent4star;
         private float _percent3star;
+        
+        private ICommand _saveCommand;
+
+
 
         #region Properties
         public float CurTotalRolls
@@ -138,24 +143,10 @@ namespace Arknight_Roll_Tracker
         #endregion Properties
 
         #region Functions
-        //public void ClearCurRolls()
-        //{
-        //    CurTotalRolls = 0;
-        //    AmtOf3Stars = 0;
-        //    AmtOf4Stars = 0;
-        //    AmtOf5Stars = 0;
-        //    AmtOf6Stars = 0;
-        //    percent6star = 0;
-        //    percent5star = 0;
-        //    percent4star = 0;
-        //    percent3star = 0;
-        //}
-
         public void SumforCurRolls()
         {
             CurTotalRolls = _amtOf3Stars + _amtOf4Stars + _amtOf5Stars + _amtOf6Stars;
         }
-
         public void PercentCalculation()
         {
             Percent6star = divide(_amtOf6Stars, _curTotalRolls) * 100;
@@ -163,7 +154,6 @@ namespace Arknight_Roll_Tracker
             Percent4star = divide(_amtOf4Stars, _curTotalRolls) * 100;
             Percent3star = divide(_amtOf3Stars, _curTotalRolls) * 100;
         }
-
         public float divide(float n1, float n2)
         {
             /* n1 divided by n2 */
@@ -173,7 +163,27 @@ namespace Arknight_Roll_Tracker
             }
             return (n1 / n2);
         }
-
         #endregion Functions
+
+        #region Commands
+        public ICommand SaveCommand
+        {
+            get
+            {
+                if (_saveCommand == null)
+                {
+                    _saveCommand = new DoCommand(SaveFunction);
+                }
+                return _saveCommand;
+            }
+        }
+
+        public void SaveFunction()
+        {
+
+        }
+
+
+        #endregion Commands
     }
 }
