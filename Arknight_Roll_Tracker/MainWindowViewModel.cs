@@ -18,7 +18,8 @@ namespace Arknight_Roll_Tracker
         private float _percent4star;
         private float _percent3star;
         
-        private ICommand _saveCommand;
+        private ICommand _saveCurrentCommand;
+        private ICommand _saveGrandCommand;
 
         public MainWindowViewModel()
         {
@@ -170,11 +171,11 @@ namespace Arknight_Roll_Tracker
         {
             try
             {
-                using (FileStream file = new FileStream(@"ArknightRollTracker.csv", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                using (FileStream file = new FileStream(@"ArknightCurrentRollTracker.csv", FileMode.OpenOrCreate, FileAccess.ReadWrite))
                 {
                     using var sr = new StreamReader(file);
-                    string line = sr.ReadLine();
-                    line = sr.ReadLine();
+                    string line = sr.ReadLine();    //read headers
+                    line = sr.ReadLine();           // read values
                     if (line == null)
                     {
                         _amtOf6Stars = 0;
@@ -185,10 +186,10 @@ namespace Arknight_Roll_Tracker
                     else
                     {
                         string[] words = line.Split(",");
-                        _amtOf6Stars = float.Parse(words[0]);
-                        _amtOf5Stars = float.Parse(words[1]);
-                        _amtOf4Stars = float.Parse(words[2]);
-                        _amtOf3Stars = float.Parse(words[3]);
+                        _amtOf6Stars = float.Parse(words[1]);
+                        _amtOf5Stars = float.Parse(words[2]);
+                        _amtOf4Stars = float.Parse(words[3]);
+                        _amtOf3Stars = float.Parse(words[4]);
                     }
                     file.Close();
                 }
@@ -199,30 +200,56 @@ namespace Arknight_Roll_Tracker
             }
             CurTotalRolls = _amtOf3Stars + _amtOf4Stars + _amtOf5Stars + _amtOf6Stars;
             PercentCalculation();
+
+            try
+            {
+                using (FileStream file = new FileStream(@"ArknightGrandRollTracker.csv", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    file.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Making Grand File Error", ex);
+            }
         }
 
         #endregion Functions
 
         #region Commands
-        public ICommand SaveCommand
+        public ICommand SaveCurrentCommand
         {
             get
             {
-                if (_saveCommand == null)
+                if (_saveCurrentCommand == null)
                 {
-                    _saveCommand = new DoCommand(SaveFunction);
+                    _saveCurrentCommand = new DoCommand(SaveCurrentFunction);
                 }
-                return _saveCommand;
+                return _saveCurrentCommand;
             }
         }
 
-        public void SaveFunction()
+        public ICommand SaveGrandCommand
+        {
+            get
+            {
+                if (_saveGrandCommand == null)
+                {
+                    _saveGrandCommand = new DoCommand(SaveGrandFunction);
+                }
+                return _saveGrandCommand;
+            }
+        }
+        public void SaveCurrentFunction()
         {
             try 
             {
-                using(StreamWriter file = new StreamWriter(@"ArknightRollTracker.csv", false))
+                DateTime dateTime = DateTime.Now;
+                using(StreamWriter file = new StreamWriter(@"ArknightCurrentRollTracker.csv", false))
                 {
-                    file.WriteLine(_amtOf6Stars + "," + _amtOf5Stars + "," + _amtOf4Stars + "," + _amtOf3Stars);
+                    file.WriteLine("Date,6* Operator,5* Operator,4* Operator,3* Operator");
+                    file.WriteLine(dateTime.ToString("dd/MMMM/ yyyy") + "," + _amtOf6Stars + "," + _amtOf5Stars + "," + _amtOf4Stars + "," + _amtOf3Stars);
+                    file.Close();
                 }
             }
             catch(Exception ex)
@@ -231,6 +258,27 @@ namespace Arknight_Roll_Tracker
             }
         }
 
+        public void SaveGrandFunction()
+        {
+            try
+            {
+                DateTime dateTime = DateTime.Now;
+                using (StreamWriter file = new StreamWriter(@"ArknightGrandRollTracker.csv", true))
+                {
+                    file.WriteLine(dateTime.ToString("dd/MMMM/ yyyy") + "," + _amtOf6Stars + "," + _amtOf5Stars + "," + _amtOf4Stars + "," + _amtOf3Stars);
+                    file.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Failed to Save File.", ex);
+            }
+            _amtOf6Stars = 0;
+            _amtOf5Stars = 0;
+            _amtOf4Stars = 0;
+            _amtOf3Stars = 0;
+            SaveCurrentFunction();
+        }
 
         #endregion Commands
     }

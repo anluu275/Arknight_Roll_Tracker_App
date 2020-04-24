@@ -25,5 +25,15 @@ namespace Arknight_Roll_Tracker
             InitializeComponent();
             this.DataContext = new MainWindowViewModel();
         }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Current Roll Save Successful!");
+        }
+
+        private void SaveButton2_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Grand Roll Save Successful!\nCurrent Roll Reseted!");
+        }
     }
 }

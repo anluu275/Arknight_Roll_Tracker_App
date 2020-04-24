@@ -32,7 +32,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Pity Roll Tracker" Margin ="0,0,0,10" FontSize="18" FontWeight="SemiBold" Grid.ColumnSpan="2"  TextDecorations="Underline"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="6 Star Pity Roll Tracker" Margin ="0,0,0,10" FontSize="18" FontWeight="SemiBold" Grid.ColumnSpan="2"  TextDecorations="Underline"/>
         <TextBlock Grid.Column="1" Grid.Row="2" Text="6* Operators"  Margin ="0,0,5,10" Background="Orange" HorizontalAlignment="Center" Padding="20,0,20,0" />
         <TextBlock Grid.Column="1" Grid.Row="3" Text="5* Operators"  Margin ="0,0,5,10" Background="Gold" HorizontalAlignment="Center" Padding="20,0,20,0" />
         <TextBlock Grid.Column="1" Grid.Row="4" Text="4* Operators"  Margin ="0,0,5,10" Background="LightSkyBlue" HorizontalAlignment="Center" Padding="20,0,20,0"/>
@@ -47,6 +47,7 @@
         <TextBlock x:Name="percent5stars" Grid.Column="3" Grid.Row="3" Text="{Binding Percent5star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
         <TextBlock x:Name="percent4stars" Grid.Column="3" Grid.Row="4" Text="{Binding Percent4star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
         <TextBlock x:Name="percent3stars" Grid.Column="3" Grid.Row="5" Text="{Binding Percent3star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
-        <Button x:Name="SaveButton" Grid.Column="1" Grid.Row="7" Content=" Save " Margin ="0,0,5,10" Command="{Binding SaveCommand}" />
+        <Button x:Name="SaveButton" Grid.Column="1" Grid.Row="7" Content=" Save Current Rolls " Margin ="0,0,5,10" Command="{Binding SaveCurrentCommand}" Click="SaveButton_Click" />
+        <Button x:Name="SaveButton2" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="7" Content=" Save Grand Rolls " Margin ="0,0,5,10" Command="{Binding SaveGrandCommand}" Click="SaveButton2_Click" />
     </Grid>
 </Window>
