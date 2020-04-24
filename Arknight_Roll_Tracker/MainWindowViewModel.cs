@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
 
@@ -7,7 +8,6 @@ namespace Arknight_Roll_Tracker
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        /* amt of each */
         private float _curTotalRolls;
         private float _amtOf6Stars;
         private float _amtOf5Stars;
@@ -20,8 +20,10 @@ namespace Arknight_Roll_Tracker
         
         private ICommand _saveCommand;
 
-
-
+        public MainWindowViewModel()
+        {
+            LoadFunction();
+        }
         #region Properties
         public float CurTotalRolls
         {
@@ -163,6 +165,42 @@ namespace Arknight_Roll_Tracker
             }
             return (n1 / n2);
         }
+
+        private void LoadFunction()
+        {
+            try
+            {
+                using (FileStream file = new FileStream(@"ArknightRollTracker.csv", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    using var sr = new StreamReader(file);
+                    string line = sr.ReadLine();
+                    line = sr.ReadLine();
+                    if (line == null)
+                    {
+                        _amtOf6Stars = 0;
+                        _amtOf5Stars = 0;
+                        _amtOf4Stars = 0;
+                        _amtOf3Stars = 0;
+                    }
+                    else
+                    {
+                        string[] words = line.Split(",");
+                        _amtOf6Stars = float.Parse(words[0]);
+                        _amtOf5Stars = float.Parse(words[1]);
+                        _amtOf4Stars = float.Parse(words[2]);
+                        _amtOf3Stars = float.Parse(words[3]);
+                    }
+                    file.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Failed to Load File.", ex);
+            }
+            CurTotalRolls = _amtOf3Stars + _amtOf4Stars + _amtOf5Stars + _amtOf6Stars;
+            PercentCalculation();
+        }
+
         #endregion Functions
 
         #region Commands
@@ -180,7 +218,17 @@ namespace Arknight_Roll_Tracker
 
         public void SaveFunction()
         {
-
+            try 
+            {
+                using(StreamWriter file = new StreamWriter(@"ArknightRollTracker.csv", false))
+                {
+                    file.WriteLine(_amtOf6Stars + "," + _amtOf5Stars + "," + _amtOf4Stars + "," + _amtOf3Stars);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new ApplicationException("Failed to Save File.", ex);
+            }
         }
 
 
