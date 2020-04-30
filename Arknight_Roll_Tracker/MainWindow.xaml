@@ -6,48 +6,48 @@
         xmlns:local="clr-namespace:Arknight_Roll_Tracker"
         mc:Ignorable="d" FontSize="18"
         Title="Arknight's Roll Tracker" Height="450" Width="800">
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Arknight_Roll_Tracker;component/resources/HDArknightBag.png" />
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="6* Star Pity Roll Tracker" Margin ="0,0,0,10" FontSize="18" FontWeight="SemiBold" Grid.ColumnSpan="2" Background="Orange" HorizontalAlignment="Center" Padding="20,0,20,0" TextDecorations="Underline"/>
-        <TextBlock Grid.Column="1" Grid.Row="2" Text="6* Operators"  Margin ="0,0,5,10" Background="Orange" HorizontalAlignment="Center" Padding="20,0,20,0" />
-        <TextBlock Grid.Column="1" Grid.Row="3" Text="5* Operators"  Margin ="0,0,5,10" Background="Gold" HorizontalAlignment="Center" Padding="20,0,20,0" />
-        <TextBlock Grid.Column="1" Grid.Row="4" Text="4* Operators"  Margin ="0,0,5,10" Background="LightSkyBlue" HorizontalAlignment="Center" Padding="20,0,20,0"/>
-        <TextBlock Grid.Column="1" Grid.Row="5" Text="3* Operators"  Margin ="0,0,5,10" Background="WhiteSmoke" HorizontalAlignment="Center" Padding="20,0,20,0"/>
-        <TextBlock Grid.Column="1" Grid.Row="6" Text="Total Roll Count"  Margin ="0,0,5,10" FontWeight="SemiBold" Background="FloralWhite" HorizontalAlignment="Center" Padding="7,0,7,0"/>
-        <TextBox x:Name="numof6stars" Grid.Column="2" Grid.Row="2" Margin="0,0,0,5" Width="60" Text="{Binding AmtOf6Stars, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="numof5stars" Grid.Column="2" Grid.Row="3" Margin="0,0,0,5" Width="60" Text="{Binding AmtOf5Stars, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="numof4stars" Grid.Column="2" Grid.Row="4" Margin="0,0,0,5" Width="60" Text="{Binding AmtOf4Stars, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="numof3stars" Grid.Column="2" Grid.Row="5" Margin="0,0,0,5" Width="60" Text="{Binding AmtOf3Stars, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="totalCurRolls" Grid.Column="2" Grid.Row="6" Margin="0,0,0,5" Width="60" IsEnabled="False" Text="{Binding CurTotalRolls, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock x:Name="percent6stars" Grid.Column="3" Grid.Row="2" Text="{Binding Percent6star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
-        <TextBlock x:Name="percent5stars" Grid.Column="3" Grid.Row="3" Text="{Binding Percent5star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
-        <TextBlock x:Name="percent4stars" Grid.Column="3" Grid.Row="4" Text="{Binding Percent4star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
-        <TextBlock x:Name="percent3stars" Grid.Column="3" Grid.Row="5" Text="{Binding Percent3star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
-        <Button x:Name="SaveButton" Grid.Column="1" Grid.Row="7" Content=" Save Current Rolls " Margin ="0,0,5,10" Command="{Binding SaveCurrentCommand}" Click="SaveButton_Click" />
-        <Button x:Name="SaveButton2" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="7" Content=" Save Grand Rolls " Margin ="0,0,5,10" Command="{Binding SaveGrandCommand}" Click="SaveButton2_Click" />
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="6* Star Pity Roll Tracker" Margin ="0,0,0,10" FontSize="18" FontWeight="SemiBold" Grid.ColumnSpan="2" Background="Orange" HorizontalAlignment="Center" Padding="20,0,20,0" TextDecorations="Underline"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="6* Operators"  Margin ="0,0,5,10" Background="Orange" HorizontalAlignment="Center" Padding="20,0,20,0" />
+            <TextBlock Grid.Column="1" Grid.Row="3" Text="5* Operators"  Margin ="0,0,5,10" Background="Gold" HorizontalAlignment="Center" Padding="20,0,20,0" />
+            <TextBlock Grid.Column="1" Grid.Row="4" Text="4* Operators"  Margin ="0,0,5,10" Background="LightSkyBlue" HorizontalAlignment="Center" Padding="20,0,20,0"/>
+            <TextBlock Grid.Column="1" Grid.Row="5" Text="3* Operators"  Margin ="0,0,5,10" Background="WhiteSmoke" HorizontalAlignment="Center" Padding="20,0,20,0"/>
+            <TextBlock Grid.Column="1" Grid.Row="6" Text="Total Roll Count"  Margin ="0,0,5,10" FontWeight="SemiBold" Background="FloralWhite" HorizontalAlignment="Center" Padding="7,0,7,0"/>
+            <TextBox x:Name="numof6stars" Grid.Column="2" Grid.Row="2" Margin="0,0,0,5" Width="60" Text="{Binding AmtOf6Stars, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="numof5stars" Grid.Column="2" Grid.Row="3" Margin="0,0,0,5" Width="60" Text="{Binding AmtOf5Stars, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="numof4stars" Grid.Column="2" Grid.Row="4" Margin="0,0,0,5" Width="60" Text="{Binding AmtOf4Stars, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="numof3stars" Grid.Column="2" Grid.Row="5" Margin="0,0,0,5" Width="60" Text="{Binding AmtOf3Stars, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="totalCurRolls" Grid.Column="2" Grid.Row="6" Margin="0,0,0,5" Width="60" IsEnabled="False" Text="{Binding CurTotalRolls, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock x:Name="percent6stars" Grid.Column="3" Grid.Row="2" Text="{Binding Percent6star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
+            <TextBlock x:Name="percent5stars" Grid.Column="3" Grid.Row="3" Text="{Binding Percent5star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
+            <TextBlock x:Name="percent4stars" Grid.Column="3" Grid.Row="4" Text="{Binding Percent4star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
+            <TextBlock x:Name="percent3stars" Grid.Column="3" Grid.Row="5" Text="{Binding Percent3star, StringFormat='\{0:0.##\}%'}" Margin ="10,0,0,10" Foreground="Gray" />
+            <Button x:Name="SaveButton" Grid.Column="1" Grid.Row="7" Content=" Save Current Rolls " Margin ="0,0,5,10" Command="{Binding SaveCurrentCommand}" Click="SaveButton_Click" />
+            <Button x:Name="SaveButton2" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="7" Content=" Save Grand Rolls " Margin ="0,0,5,10" Command="{Binding SaveGrandCommand}" Click="SaveButton2_Click" />
+        </Grid>
     </Grid>
 </Window>
