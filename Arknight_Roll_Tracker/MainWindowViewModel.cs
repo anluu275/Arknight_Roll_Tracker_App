@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Arknight_Roll_Tracker
@@ -20,6 +21,8 @@ namespace Arknight_Roll_Tracker
         
         private ICommand _saveCurrentCommand;
         private ICommand _saveGrandCommand;
+        private ICommand _addCommand;
+        private ICommand _subtractCommand;
 
         public MainWindowViewModel()
         {
@@ -217,6 +220,53 @@ namespace Arknight_Roll_Tracker
         #endregion Functions
 
         #region Commands
+
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (_addCommand == null)
+                {
+                    _addCommand = new DoCommand<string>(AddFunction);
+                }
+                return _addCommand;
+            }
+        }
+        private void AddFunction(string viewparam)
+        {
+            if (viewparam == "6star")
+                AmtOf6Stars += 1;
+            else if (viewparam == "5star")
+                AmtOf5Stars += 1;
+            else if (viewparam == "4star")
+                AmtOf4Stars += 1;
+            else if (viewparam == "3star")
+                AmtOf3Stars += 1;
+        }
+
+        public ICommand SubtractCommand
+        {
+            get
+            {
+                if (_subtractCommand == null)
+                {
+                    _subtractCommand = new DoCommand<string>(SubtractFunction);
+                }
+                return _subtractCommand;
+            }
+        }
+        private void SubtractFunction(string viewparam)
+        {
+            if (viewparam == "6star")
+                AmtOf6Stars = AmtOf6Stars > 0 ? AmtOf6Stars -= 1 : AmtOf6Stars;
+            else if (viewparam == "5star")
+                AmtOf5Stars = AmtOf5Stars > 0 ? AmtOf5Stars -= 1 : AmtOf5Stars;
+            else if (viewparam == "4star")
+                AmtOf4Stars = AmtOf4Stars > 0 ? AmtOf4Stars -= 1 : AmtOf4Stars;
+            else if (viewparam == "3star")
+                AmtOf3Stars = AmtOf3Stars > 0 ? AmtOf3Stars -= 1 : AmtOf3Stars;
+        }
+
         public ICommand SaveCurrentCommand
         {
             get
@@ -226,6 +276,23 @@ namespace Arknight_Roll_Tracker
                     _saveCurrentCommand = new DoCommand(SaveCurrentFunction);
                 }
                 return _saveCurrentCommand;
+            }
+        }
+        public void SaveCurrentFunction()
+        {
+            try
+            {
+                DateTime dateTime = DateTime.Now;
+                using (StreamWriter file = new StreamWriter(@"ArknightCurrentRollTracker.csv", false))
+                {
+                    file.WriteLine("Date,6* Operator,5* Operator,4* Operator,3* Operator");
+                    file.WriteLine(dateTime.ToString("dd/MMMM/ yyyy") + "," + _amtOf6Stars + "," + _amtOf5Stars + "," + _amtOf4Stars + "," + _amtOf3Stars);
+                    file.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Failed to Save File.", ex);
             }
         }
 
@@ -240,24 +307,6 @@ namespace Arknight_Roll_Tracker
                 return _saveGrandCommand;
             }
         }
-        public void SaveCurrentFunction()
-        {
-            try 
-            {
-                DateTime dateTime = DateTime.Now;
-                using(StreamWriter file = new StreamWriter(@"ArknightCurrentRollTracker.csv", false))
-                {
-                    file.WriteLine("Date,6* Operator,5* Operator,4* Operator,3* Operator");
-                    file.WriteLine(dateTime.ToString("dd/MMMM/ yyyy") + "," + _amtOf6Stars + "," + _amtOf5Stars + "," + _amtOf4Stars + "," + _amtOf3Stars);
-                    file.Close();
-                }
-            }
-            catch(Exception ex)
-            {
-                throw new ApplicationException("Failed to Save File.", ex);
-            }
-        }
-
         public void SaveGrandFunction()
         {
             try
