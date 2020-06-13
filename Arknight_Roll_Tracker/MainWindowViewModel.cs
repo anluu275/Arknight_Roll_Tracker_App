@@ -28,6 +28,7 @@ namespace Arknight_Roll_Tracker
         {
             LoadFunction();
         }
+
         #region Properties
         public float CurTotalRolls
         {

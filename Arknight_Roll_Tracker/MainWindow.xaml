@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Arknight_Roll_Tracker"
         mc:Ignorable="d" FontSize="18"
-        Title="Arknight's Roll Tracker" Height="450" Width="800">
+        Title="Arknight's Roll Tracker" Height="382" Width="503">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" >
 
         <Grid>
