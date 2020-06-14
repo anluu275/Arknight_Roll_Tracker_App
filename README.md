@@ -2,6 +2,10 @@
 
 A simple application to keep track of current gacha roll streak up until a six star rarity operator is obtained for the game, Arknight.
 
+<p align = "center">
+	<img src="images/arknightbag.gif" >
+</p>
+
 ## How to Install
 
 * Download 'Arknight_Roll_Tracker.zip' and extract folder to a location you wish to keep the application.
